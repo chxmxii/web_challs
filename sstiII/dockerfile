@@ -1,0 +1,11 @@
+FROM python:3.10.4
+RUN useradd witcher
+COPY w1tch3s/ /home/witcher/
+RUN chown -R root:root /home/witcher/*
+RUN chmod o+x /home/witcher/*
+RUN mkdir /flags
+RUN rm -rf /home/witcher/flags
+COPY w1tch3s/flags /flags
+RUN pip3 install flask
+USER witcher
+RUN python3 /home/witcher/app.py
